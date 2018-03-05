@@ -1,0 +1,20 @@
+
+def conteoPalabras(cadena: str):
+    try:
+        print(cadena)
+        cad2 = cadena.split(" ")
+        resp = ""
+        for x in cad2:
+            resp = resp + x + " = " + str(cad2.count(x)) + ", "
+            count = cad2.count(x)
+            if count > 1:
+                i = 1
+                while i < count:
+                    cad2.remove(x)
+                    i = i + 1
+        return resp
+    except Exception as e:
+        return e
+        
+cadena = "hola gth hace hjj hace hace"
+print(conteoPalabras(cadena))
