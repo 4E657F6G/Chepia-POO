@@ -1,0 +1,11 @@
+def modificarTupla(t, indice, valor):
+    x = list(t)
+    con = 0
+    if (indice <= len(x)):
+        for i in x:
+            con += 1
+            if con == indice:
+                x[i]= valor
+                print(x)
+    else:
+        print(indice, "---No Existe")
