@@ -1,18 +1,13 @@
-def conteoPalabras(cadena):
-    try:
-        cad2 = cadena.split(" ")
-        resp = ""
-        for x in cad2:
-            count = cad2.count(x)
-            if count > 1:
-                i = 1
-                while i <= count:
-                    cad2.remove(x)
-                    i = i + 1
-            resp = resp + x + " = " + str(count) + ", "
-        return resp
-    except Exception as e:
-        return e
+def conteodePalabras(word):
+    l = []
+    c=0
+    for i in range(len(word)):
+        if word[i] == " ":
+            l.append(word[c:i])
+            c = i + 1
+    l.append(word[c:])
+    dic = {x:l.count(x) for x in l}
+    return dic
 
 def hallarPalabraMayor(lista):
     cont = 0
@@ -59,6 +54,7 @@ def obtenerBilletes(monto):
 
 
 def hallarPares(lista):
+    print(lista)
     cont = 0
     valor = 1
     listaA = []
@@ -73,11 +69,6 @@ def hallarPares(lista):
                         cont = cont + 1
     return cont
 
-
-def obtenerEdad(cedula):
-    año = int(cedula[4:8])
-    edad = 2018 - año
-    return edad
 
 
 def generarArmonicos(lista):
@@ -150,17 +141,18 @@ if opcion == 1:
 
 elif opcion == 2:
     n = 0
-
     cadena = []
     numero = int(input("Ingrese la cantidad de numeros que quiere revisar: "))
-    while n != numero:
+    try:
+        while n != numero:
 
-        for i in range(numero):
-            cantidad = input("Numeros: ")
-            cadena.append(cantidad)
-        n += 1
-        hallarPares(cadena)
-
+            for i in range(numero):
+                cantidad = int(input("Numeros: "))
+                cadena.append(cantidad)
+            n += 1
+        print(hallarPares(cadena))
+    except ValueError as verror:
+        print('Error (usar solo enteros)', verror)
 elif opcion == 3:
     try:
         n = int(input("ingrese los numeros a la secuencia: "))
@@ -181,7 +173,7 @@ elif opcion == 5:
 
 elif opcion == 6:
     cadena =input("Ingrese la cadena a revisar: ")
-    print(conteoPalabras(cadena))
+    print(conteodePalabras(cadena))
 
 elif opcion == 8:
     t = (1, 2, 3, 4, 5, 'hola', 'perro')
