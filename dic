@@ -1,0 +1,12 @@
+def transformarMedida(d):
+     diccionario={'f':-17.2222,'c':33.8}
+     dic={'f':1,'c':1}
+     n=str(input("que desea hacer convertir celcius a fahrenheit o fahrenheit a celsius (ingrese c o f respectivamente): "))
+     if n =='c':
+            dic['c']=diccionario['c']*d
+            print(dic)
+     elif n=='f':
+            dic['f']=diccionario['f']*d
+            print(dic)
+            
+##pongan en d el valor que quieran hacer la conversion             
