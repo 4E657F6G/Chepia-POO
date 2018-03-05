@@ -1,0 +1,194 @@
+def conteoPalabras(cadena):
+    try:
+        cad2 = cadena.split(" ")
+        resp = ""
+        for x in cad2:
+            count = cad2.count(x)
+            if count > 1:
+                i = 1
+                while i <= count:
+                    cad2.remove(x)
+                    i = i + 1
+            resp = resp + x + " = " + str(count) + ", "
+        return resp
+    except Exception as e:
+        return e
+
+def hallarPalabraMayor(lista):
+    cont = 0
+    word = ""
+    for i in lista:
+        if len(i) > cont:
+            cont = len(i)
+            word = i
+        elif len(i) == cont:
+            if i > word:
+                word = word
+            else:
+                word = i
+    return word
+
+
+def obtenerBilletes(monto):
+    dict1 = {"1": 0, "2": 0, "5": 0, "10": 0, "20": 0, "50": 0, "100": 0, "500": 0}
+    if monto // 500 != 0:
+        dict1["500"] = monto // 500
+        monto = (monto) - (monto // 500) * (500)
+    if monto // 100 != 0:
+        dict1["100"] = monto // 100
+        monto = (monto) - (monto // 100) * (100)
+    if monto // 50 != 0:
+        dict1["50"] = monto // 50
+        monto = (monto) - (monto // 50) * (50)
+    if monto // 20 != 0:
+        dict1["20"] = monto // 20
+        monto = (monto) - (monto // 20) * (20)
+    if monto // 10 != 0:
+        dict1["10"] = monto // 10
+        monto = (monto) - (monto // 10) * (10)
+    if monto // 5 != 0:
+        dict1["5"] = monto // 5
+        monto = (monto) - (monto // 5) * (5)
+    if monto // 2 != 0:
+        dict1["2"] = monto // 2
+        monto = (monto) - (monto // 2) * (2)
+    if monto // 1 != 0:
+        dict1["1"] = monto // 1
+        monto = (monto) - (monto // 1) * (1)
+    return dict1
+
+
+def hallarPares(lista):
+    cont = 0
+    valor = 1
+    listaA = []
+    for x in lista:
+        if type(x) == type(valor):
+            if x % 2 == 0:
+                cont = cont + 1
+        if type(x) == type(listaA):
+            for y in x:
+                if type(y) == type(valor):
+                    if y % 2 == 0:
+                        cont = cont + 1
+    return cont
+
+
+def obtenerEdad(cedula):
+    año = int(cedula[4:8])
+    edad = 2018 - año
+    return edad
+
+
+def generarArmonicos(lista):
+    a = []
+    for i in range(0, lista + 1):
+        a.append(i)
+    c = []
+    for x in a:
+        if x > 0:
+            c.insert(x, 1 / x)
+    print(c)
+    for a in c:
+        print(Fraction(a))
+
+
+def obtenerEdad(cedula):
+    a = []
+    for i in cedula:
+        if i != '-':
+            a.append(i)
+        else:
+            pass
+    b = ''.join(a)
+
+    c = 0
+    cad = []
+    for i in b:
+        c += 1
+        if c >= 5 and c <= 8:
+            cad.append(i)
+
+    print("La persona nacio en: ", cad[0] + cad[1] + cad[2] + cad[3])
+    edad= int(cad[0] + cad[1] + cad[2] + cad[3])
+    print(2018-edad)
+
+def obtenerDigitoMasSignificativo(n):
+    n = str(n)
+    a = []
+    for i in n:
+        a.append(i)
+    print("el numero mas significativo es:", a[0])
+
+
+def modificarTupla(t, indice, valor):
+    x = list(t)
+    con = 0
+    if (indice <= len(x)):
+        for i in x:
+            con += 1
+            if con == indice:
+                x[i]= valor
+                print(x)
+    else:
+        print(indice, "---No Existe")
+
+
+
+
+opcion = int(input("Que funcion desea utilizar: "))
+
+if opcion == 1:
+    x = []
+    n = int(input("ingrese el total de palabras: "))
+    for i in range(n):
+        palabra = input("palabras: ")
+        x.append(palabra)
+    r = hallarPalabraMayor(x)
+    print(r)
+
+
+elif opcion == 2:
+    n = 0
+
+    cadena = []
+    numero = int(input("Ingrese la cantidad de numeros que quiere revisar: "))
+    while n != numero:
+
+        for i in range(numero):
+            cantidad = input("Numeros: ")
+            cadena.append(cantidad)
+        n += 1
+        hallarPares(cadena)
+
+elif opcion == 3:
+    try:
+        n = int(input("ingrese los numeros a la secuencia: "))
+        if n < 3:
+            raise ValueError('Numero mayor que 0')
+    except ValueError:
+        print("el numero debe ser un entero positivo")
+    else:
+        generarArmonicos(n)
+
+elif opcion == 4:
+    cedula = str(input("Ingrese su numero de identidad: "))
+    obtenerEdad(cedula)
+
+elif opcion == 5:
+    numero = int(input("Ingrese un numero"))
+    obtenerDigitoMasSignificativo(numero)
+
+elif opcion == 6:
+    cadena =input("Ingrese la cadena a revisar: ")
+    print(conteoPalabras(cadena))
+
+elif opcion == 8:
+    t = (1, 2, 3, 4, 5, 'hola', 'perro')
+    print("La tupla es:", t)
+    n = int(input("Ingrese el indice de la tupla que desea modificar: "))
+    valor = input("ingrese valor: ")
+    modificarTupla(t, n, valor)
+elif opcion == 10:
+    monto=int(input("ingrese monto"))
+    print(obtenerBilletes(monto))
